@@ -1,0 +1,27 @@
+type Union {
+    id: ID
+    tramite: Tramite
+    tramiteGeneral: Tramite
+    configuracion: JSON
+    deprecated: Boolean
+    created_at: Date
+    updated_at: Date
+}
+
+type Query {
+    unionByTramite(id_tramite: ID!): [Union]
+    unionById(id:ID!):Union
+    diasEspecialesByTramite(id_tramite: ID!): JSON 
+}
+
+type Mutation {
+    union(id_tramite: ID!,configuracion: JSON!,id_usuario:ID!): Union
+    
+    setConfiguracion(configuracion: JSON!,id_usuario:ID!): Union
+
+    setDiasEspeciales(id_tramite:ID!,id_usuario:ID!,dias: [JSON]!): Boolean
+
+    deleteDiasEspeciales(id_tramite:ID!,id_usuario:ID!, dias: [String]!): Boolean
+
+
+}

@@ -1,0 +1,41 @@
+# Objeto para el control de tramites
+type Tramite {
+  id: ID
+  nombre: String
+  descripcion:String
+  requisitos: JSON
+  estatus:Boolean
+  deprecated: Boolean
+  created_at: Date
+  updated_at: Date
+}
+
+type Query {
+  # Retorna un "tramite" objeto en específico
+  tramite(id: ID!): Tramite
+
+  tramiteGeneral(id: ID!): Tramite
+
+  # Retorna un arreglo de todos los "tramite" objectos
+  tramites: [Tramite]
+
+    tramitesGeneral: [Tramite]
+
+  # Retorna un arreglo de "String" con las horas disponibles
+  getFreeTimeByTramite(id_tramite: ID!, fecha: Date!): [String]
+
+}
+
+type Mutation {
+  tramite(nombre: String!, requisitos:[Requisitos!],descripcion:String,id_usuario:ID!): Tramite
+  updateTramite(id: ID!, nombre: String!,descripcion:String,id_usuario:ID!): Tramite
+  updateEstatusTramite(id: ID!,estatus:Boolean!,id_usuario:ID!): Boolean
+
+  updatedTramiteRequsitos(id:ID!,requisitos:[Requisitos!],id_usuario:ID!):Tramite
+}
+
+input Requisitos {
+  nombre_largo:String!,nombre_corto:String!,ordenamiento:Int!
+}
+
+

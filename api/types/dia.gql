@@ -1,0 +1,21 @@
+# Objeto para el control de días inhabiles
+type Dia {
+  id: ID
+  fecha: Date
+  deprecated: Boolean
+  created_at: Date
+  updated_at: Date
+}
+
+type Query {
+  # Retorna un arreglo de los "dia" objetos
+  dias: [Dia]
+}
+
+type Mutation {
+  # Creación de un nuevo objeto dia
+  dia(fecha: String!,id_usuario:ID!): Dia
+
+  # Deprecar un objeto día en especifico
+  diaToState(id: ID!, estado: Boolean!,id_usuario:ID!): Boolean
+}

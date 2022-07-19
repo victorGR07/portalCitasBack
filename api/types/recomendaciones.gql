@@ -1,0 +1,20 @@
+type Recomendaciones{
+id:ID
+recomendacion:String
+estatus:Boolean
+ordenamiento:Int
+deprecated:Boolean
+created_at:Date
+}
+
+type Query {
+    recomendacionPersonalizado(id:ID,recomendacion:String):[Recomendaciones]
+    recomendacionPersonalizadoGeneral(id:ID,recomendacion:String):[Recomendaciones]
+}
+
+type Mutation{
+    recomendacion(recomendacion:String!,id_usuario:ID!):Recomendaciones
+    bajaRecomendacion(id:ID!,id_usuario:ID!):Boolean
+    altaRecomendacion(id:ID!,id_usuario:ID!):Boolean
+    ordenamientoRecomendaciones(ordenamiento:JSON):Boolean
+}

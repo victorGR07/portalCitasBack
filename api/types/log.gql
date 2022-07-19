@@ -1,0 +1,24 @@
+type Log {
+  id: ID
+  id_usuario: ID
+  descripcion: String
+  cliente:JSON
+  operacion: JSON
+  created_at: Date
+}
+
+type Query {
+  log(id: ID!): Log
+
+  logNotificaciones:[Log]
+}
+
+type Mutation {
+  log(
+   id_usuario: ID
+  descripcion: String
+  cliente:JSON
+  operacion: JSON
+  ): Log
+
+}

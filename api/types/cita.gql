@@ -1,0 +1,52 @@
+type Cita {
+  id: ID
+  folio_general:ID
+  folio_dia:ID
+  nombre: String
+  primer_apellido: String
+  segundo_apellido: String
+  razon_social:String
+  tipo_persona:String
+  rfc:String
+  telefono: String
+  email: String
+  fecha: Date
+  hora: Date
+  union_tramite_configuracion:Union
+  observacion: String
+  tramite_confirmacion: Tramite
+  tramite_confirmacionGeneral: Tramite
+  deprecated: Boolean
+  created_at: Date
+  updated_at: Date
+  usuario:Usuarios
+  documentacion:JSON
+  estado:Estados
+}
+
+type Query {
+  cita(id: ID!): Cita
+  citaPersonalizada(id: ID,folio_general:ID,folio_dia:ID,rfc:String,email: String,
+  fecha: Date,hora: Date,id_estado:ID):[Cita]
+  citas: [Cita]
+  citasByTramite(id_tramite: ID!): [Cita]
+#fecha,hora,usuarioque lo atendio
+  reportesCitas(fecha_inicio:Date!, fecha_fin:Date!,tipo_persona:String,id_tramite:ID,id_usuario:ID,id_estado:ID):[Cita]
+
+  # Valida que solo se pueda hacer una cita por dia (correo y nombre completo)
+  canMakeCita(rfc: String!,fecha: String!): Boolean
+
+}
+
+type Mutation {
+  cita(nombre: String,primer_apellido: String,segundo_apellido: String,
+  razon_social:String,tipo_persona:String!,rfc:String!,telefono: String!,email: String!,
+  fecha: String!,hora: String!,union_tramite_configuracion:ID!): Cita
+  setAtendido(id: ID!,tramite_confirmacion:ID!,id_usuario:ID!): Cita
+  setObservacion(id: ID!, observacion: String!,id_usuario:ID!): Cita
+  setDocumentacion(id: ID!, documentacion: JSON!,id_usuario:ID!): Cita
+  ordenamiento(ordenamiento:JSON):Boolean
+  setEstadoCita(id:ID!,id_estado:ID!,id_usuario:ID!):Cita
+  notificacionCitas(mensaje:String!,fecha:Date!,id_usuario:ID!):Boolean
+  
+}

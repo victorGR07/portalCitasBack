@@ -1,0 +1,44 @@
+/* FONTS */
+@font-face {
+  font-family: "UniviaPro-Light";
+  src: url(./fonts/UniviaPro-Light.ttf);
+  color: black;
+}
+
+@font-face{
+  font-family: "UniviaPro-Bold";
+  src: url(./fonts/UniviaPro-Bold.ttf);
+}
+
+@font-face {
+  font-family: "UniviaPro-Black";
+  src: url(./fonts/UniviaPro-Black.ttf);
+}
+
+@font-face {
+  font-family: "UniviaPro-Ultra";
+  src: url(./fonts/UniviaPro-Ultra.ttf);
+}
+
+body {
+  font-family: "UniviaPro-Light";
+  background-image: url(./images/fondo-flor-gris.png);
+}
+
+section {
+  margin-top: 1em;
+}
+
+section .banner-header {
+  background-color: #d7d7d7;
+}
+
+section .banner {
+  max-width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+section .separator{
+  border-right: 2px solid rgb(0, 0, 0);
+}

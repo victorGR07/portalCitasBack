@@ -1,0 +1,16 @@
+
+type FechaConfiguracion{
+    id:ID
+    fecha:Date
+    is_current:Boolean
+}
+
+type Query {
+    fecha_configuracion:Date
+    fecha_configuraciones:[FechaConfiguracion]
+}
+
+type Mutation {
+    crearfecha_configuracion(fecha_configuracion:Date,id_usuario:ID!):Boolean
+    cancelarfechafecha_configuracion(id:ID!,id_usuario:ID!):Boolean
+}

@@ -1,0 +1,7 @@
+type Estados{
+    id:ID
+    nombre:String
+}
+type Query{
+ estadosPersonalizados(id:ID,nombre:String):[Estados]
+}

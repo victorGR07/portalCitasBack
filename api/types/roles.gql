@@ -1,0 +1,17 @@
+type Roles{
+id:ID
+nombre:String
+deprecated:Boolean
+created_at:Date
+updated_at:Date
+deleted_at:Date
+}
+
+type  Query {
+    rolPersonalizado(id:ID,nombre:String):[Roles]
+}
+
+
+type Mutation{
+    addRoles(nombre:String!,id_usuario:ID!):Roles
+}

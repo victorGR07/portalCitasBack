@@ -1,0 +1,35 @@
+type  Usuarios {
+    id:ID
+    rol:Roles
+    nombre:String
+    primer_apellido:String
+    segundo_apellido:String
+    correo:String
+    clave_privada:String
+    curp:String
+    estatus:Boolean
+    bloqueado:Boolean
+    deprecated:Boolean
+    created_at:Date
+    updated_at:Date
+    deleted_at:Date
+}
+
+
+type Query {
+    usuarioPersonalizado(id:ID, clave_privada:String,correo:String,curp:String,id_rol:ID):[Usuarios]
+    cantidadPersonal:Int
+}
+
+
+
+type Mutation {
+    addUsuario(id_rol:ID!,nombre:String!,primer_apellido:String!,segundo_apellido:String,correo:String!,clave_privada:String!,id_usuario:ID!,curp:String!,clave:String!):Usuarios
+
+    #accion 1, para bloquear o desbloquear, 
+    #accion 2, para activar o desactivar, 
+    #valor true, activa o desbloquea, valor false, desactiva o bloquea
+    bloqueoActivoUsario(id:ID!,accion:Int!,valor:Boolean!,id_usuario:ID!):Boolean
+    
+    updatedUsuario( id:ID!,id_rol:ID!, nombre:String!,primer_apellido:String!,segundo_apellido:String,clave_privada:String!,correo:String!,curp:String!,id_usuario:ID!,clave:String):Usuarios
+}
