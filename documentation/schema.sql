@@ -90,6 +90,17 @@ CREATE TABLE citas_proveedores.TRAMITES (
 --------- E N D   T R A M I T E ------------
 --------------------------------------------
 
+--------------------------------------------
+------------ E S T A D  O S ----------------
+CREATE TABLE citas_proveedores.estados (
+	id int8 NOT NULL DEFAULT nextval('citas_proveedores.seq_estados'::regclass),
+	nombre varchar NOT NULL,
+	deprecated bool NOT NULL DEFAULT false,
+	created_at timestamptz(0) NOT NULL DEFAULT now(),
+	updated_at timestamptz(0) NULL,
+	deleted_at timestamptz(0) NULL,
+	CONSTRAINT estados_pk PRIMARY KEY (id)
+);
 
 
 ------------------------------------------------------------------------------------
@@ -172,6 +183,9 @@ CREATE TABLE citas_proveedores.DIAS (
 --------------------------------------
 
 
+
+--------------------------------------------
+----F E C H A   C O N F I G U R A C I O N --
 CREATE TABLE citas_proveedores.fecha_configuracion (
 	id int8 NOT NULL DEFAULT nextval('citas_proveedores.seq_fecha_configuracion'::regclass),
 	fecha date NOT NULL,
@@ -184,6 +198,9 @@ CREATE TABLE citas_proveedores.fecha_configuracion (
 );
 
 
+
+--------------------------------------------
+------------- R O L E S---- ----------------
 CREATE TABLE IF NOT EXISTS citas_proveedores.roles(
 	id BIGINT NOT NULL DEFAULT NEXTVAL('citas_proveedores.seq_roles') CHECK(id > 0),
 	nombre  varchar(100) not null,
@@ -195,6 +212,9 @@ CREATE TABLE IF NOT EXISTS citas_proveedores.roles(
 );
 
 
+
+--------------------------------------------
+------------- U S U A R I O S ----------------
 CREATE TABLE IF NOT EXISTS citas_proveedores.usuarios(
 	id BIGINT NOT NULL DEFAULT NEXTVAL('citas_proveedores.seq_usuarios') CHECK(id > 0),
 	id_rol  BIGINT not null,
@@ -214,6 +234,9 @@ CREATE TABLE IF NOT EXISTS citas_proveedores.usuarios(
 	CONSTRAINT PK_usuarios PRIMARY KEY (id)
 );
 
+
+--------------------------------------------
+-----------R E C O M E N D A C I O N E S ---
 CREATE TABLE citas_proveedores.recomendaciones (
 	id int8 NOT NULL DEFAULT nextval('citas_proveedores.seq_recomendaciones'::regclass),
 	recomendacion varchar NOT NULL,
@@ -239,3 +262,6 @@ create trigger updated after update of deprecated on citas_proveedores.union_tra
 create trigger updated after update of deprecated on citas_proveedores.usuarios for each row execute function citas_proveedores.updateddeprecated();
 create trigger updated after update of deprecated on citas_proveedores.recomendaciones for each row execute function citas_proveedores.updateddeprecated();
 create trigger updated after update of deprecated on citas_proveedores.estados for each row execute function citas_proveedores.updateddeprecated();
+
+
+
